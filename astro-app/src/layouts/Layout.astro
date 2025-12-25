@@ -28,5 +28,153 @@ const {
 
   <body>
     <slot />
+
+    <!-- =========================
+         GLOBAL TRACKING SCRIPTS
+         ========================= -->
+    <script is:inline>
+      (function () {
+        "use strict";
+
+        /* =====================
+           CONFIG
+        ====================== */
+        const CLICKY_SITE_ID = "101492693";
+        const BEACON_PREFIX = "/f2d4c400adb21";
+        const HANDOFF_MS = 120;
+        const INTERNAL_REDIRECT_PATHS = [/^\/join(?:\/|$)/, /^\/go(?:\/|$)/, /^\/out(?:\/|$)/];
+
+        /* =====================
+           CLICKY BASE CONFIG
+        ====================== */
+        window.clicky_custom = window.clicky_custom || {};
+        clicky_custom.ping_disable = 0;
+        clicky_custom.ping_interval = 15;
+
+        /* =====================
+           LOAD CLICKY (FIRST-PARTY)
+        ====================== */
+        (function loadClicky() {
+          const s = document.createElement("script");
+          s.async = true;
+          s.dataset.id = CLICKY_SITE_ID;
+          s.src = "/a185616fac3e0.js";
+          document.head.appendChild(s);
+        })();
+
+        /* =====================
+           PATCH CLICKY → FIRST-PARTY BEACONS
+        ====================== */
+        (function patchInject() {
+          let patched = false;
+          function rewrite(src) {
+            if (typeof src !== "string") return src;
+            src = src.replace(/^(?:https?:)?\/\/in\.getclicky\.com/, BEACON_PREFIX);
+            if (/^(?:\/)?in\.php(\?|$)/.test(src)) {
+              src = BEACON_PREFIX + "/" + src.replace(/^\//, "");
+            }
+            return src;
+          }
+          function tryPatch() {
+            try {
+              if (window.clicky && typeof window.clicky.inject === "function" && !patched) {
+                const orig = window.clicky.inject;
+                window.clicky.inject = function (src, type) {
+                  return orig.call(this, rewrite(src), type);
+                };
+                patched = true;
+              }
+            } catch (_) {}
+          }
+          const iv = setInterval(() => {
+            patched ? clearInterval(iv) : tryPatch();
+          }, 100);
+        })();
+
+        /* =====================
+           QUEUE SAFE LOGGING
+        ====================== */
+        const Q = [];
+        function log(url, title, type) {
+          if (window.clicky && window.clicky.log) {
+            try { window.clicky.log(url, title, type); } catch (_) {}
+            return true;
+          }
+          Q.push([url, title, type]);
+          return false;
+        }
+        const qiv = setInterval(() => {
+          if (window.clicky && window.clicky.log) {
+            clearInterval(qiv);
+            while (Q.length) {
+              const e = Q.shift();
+              try { window.clicky.log(e[0], e[1], e[2]); } catch (_) {}
+            }
+          }
+        }, 100);
+
+        /* =====================
+           GCLID CAPTURE
+        ====================== */
+        (function () {
+          const m = location.search.match(/[?&]gclid=([^&]+)/);
+          if (m) {
+            window.clicky_custom.custom_data = window.clicky_custom.custom_data || {};
+            clicky_custom.custom_data.gclid = decodeURIComponent(m[1]);
+          }
+        })();
+
+        /* =====================
+           OUTBOUND + REDIRECT TRACKING
+        ====================== */
+        function isExternal(a) {
+          try { return a.hostname && a.hostname !== location.hostname; } catch { return false; }
+        }
+        function isInternalRedirect(a) {
+          try { return INTERNAL_REDIRECT_PATHS.some(rx => rx.test(a.pathname || "")); } catch { return false; }
+        }
+        function sameTab(a, ev) {
+          if (a.target && a.target.toLowerCase() === "_blank") return false;
+          if (ev && (ev.ctrlKey || ev.shiftKey || ev.metaKey || ev.button === 1)) return false;
+          return true;
+        }
+
+        document.addEventListener("click", function (ev) {
+          const a = ev.target && ev.target.closest ? ev.target.closest("a[href]") : null;
+          if (!a) return;
+          if (!isExternal(a) && !isInternalRedirect(a)) return;
+
+          const title = (a.textContent || a.title || a.href).trim() || "Outbound Link";
+
+          if (sameTab(a, ev)) {
+            ev.preventDefault();
+            log(a.href, title, "outbound");
+
+            let done = false;
+            const go = () => { if (!done) { done = true; location.href = a.href; } };
+            const tid = setTimeout(go, HANDOFF_MS);
+            document.addEventListener("visibilitychange", () => {
+              clearTimeout(tid); go();
+            }, { once: true });
+            return;
+          }
+
+          log(a.href, title, "outbound");
+        }, true);
+
+        /* =====================
+           SCROLL DEPTH
+        ====================== */
+        let f25=false,f50=false,f75=false;
+        document.addEventListener("scroll", () => {
+          const h = document.documentElement;
+          const p = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+          if (!f25 && p > 25) { f25 = true; log(location.pathname, "scroll_25", "engagement"); }
+          if (!f50 && p > 50) { f50 = true; log(location.pathname, "scroll_50", "engagement"); }
+          if (!f75 && p > 75) { f75 = true; log(location.pathname, "scroll_75", "engagement"); }
+        }, { passive: true });
+
+      })();
+    </script>
   </body>
 </html>
