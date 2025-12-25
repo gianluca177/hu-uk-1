@@ -3,18 +3,17 @@ import NavBar from "./NavBar.astro";
 ---
 
 <!-- ===================================================== -->
-<!-- HERO SECTION -- Complete, Animated, and Modular (MVP-ready) -->
+<!-- HERO SECTION -- Hustlers University UK → The Real World -->
 <!-- ===================================================== -->
 <section
   id="hero"
   class="relative overflow-hidden bg-brand-bg text-brand-text min-h-screen flex flex-col"
 >
 
-  <!-- 🔸 1. Navigation Bar -->
+  <!-- 🔸 Navigation Bar -->
   <NavBar />
 
-  <!-- 🔸 2. Optional Background Video -->
-  <!-- MVP DEFER: keep this for later; ship with low-opacity placeholder (no Cloudflare Stream setup today) -->
+  <!-- 🔸 Background Video (deferred / placeholder) -->
   <video
     autoplay
     loop
@@ -26,41 +25,67 @@ import NavBar from "./NavBar.astro";
     <source src="https://iframe.videodelivery.net/yourvideoid" type="video/mp4" />
   </video>
 
-  <!-- 🔸 3. Hero Content -->
+  <!-- 🔸 Hero Content -->
   <div
     class="relative z-10 flex flex-col items-center justify-center text-center flex-grow px-4 py-24 animate-fadeIn"
   >
-   <!-- 🟠 Logo -->
-<img
-  src="/trw-uk-logo-512.png"
-  alt="The Real World UK Logo"
-  class="mx-auto h-20 w-20 mb-6 rounded-full border border-brand-gold object-cover animate-fadeInDelay"
-/>
-    <!-- 🟠 Title -->
+
+    <!-- 🔶 Brand Relationship: HU → TRW -->
+    <div class="flex items-center justify-center gap-4 mb-6 animate-fadeInDelay">
+
+      <!-- Hustlers University UK Logo -->
+      <img
+        src="/hu-logo-300.png"
+        alt="Hustlers University UK Logo"
+        class="h-16 w-16 rounded-full border border-brand-gold object-cover"
+      />
+
+      <!-- Orange Arrow -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-brand-gold"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-4-4l4 4-4 4" />
+      </svg>
+
+      <!-- The Real World Logo -->
+      <img
+        src="/trw-uk-logo-512.png"
+        alt="The Real World Educational Platform Logo"
+        class="h-16 w-16 rounded-full border border-brand-gold object-cover"
+      />
+
+    </div>
+
+    <!-- 🔶 Title -->
     <h1
       class="text-5xl md:text-6xl font-satoshi font-extrabold text-brand-gold drop-shadow-[0_0_25px_rgba(255,140,42,0.8)] glow-text animate-slideUp"
     >
-      The Real World UK
+      Hustlers University UK
     </h1>
 
-    <!-- 🟠 Subtitle / Tagline (MVP-compliant) -->
+    <!-- 🔶 Subtitle / Compliance-safe description -->
     <p class="max-w-2xl mx-auto text-brand-muted text-lg mt-4 mb-8 animate-fadeInDelay2">
-      A community of digital entrepreneurs learning contemporary online business skills --
-      with guidance from experienced mentors and peers. Educational platform; outcomes depend on your effort.
+      Hustlers University UK provides access to a global online education platform
+      focused on modern business, AI, content creation, fitness, and digital skills.
+      Educational platform only -- results depend on individual effort.
     </p>
 
-    <!-- 🟠 Video Placeholder -->
-    <!-- MVP DEFER: real video embed later; keep the placeholder box -->
+    <!-- 🔶 Video Placeholder -->
     <div
       class="w-full max-w-3xl h-64 bg-brand-panel border border-brand-orange rounded-base mb-8 flex items-center justify-center animate-fadeInDelay3"
     >
       <span class="text-brand-muted italic">[ Video Placeholder ]</span>
     </div>
 
-    <!-- 🟠 CTA Buttons -->
+    <!-- 🔶 CTA Buttons -->
     <div class="flex flex-wrap justify-center gap-4 animate-fadeInDelay4">
       <a
-        href="https://jointherealworld.com/?a=7nrnndpb&utm_source=therealworlduk&utm_medium=cta_hero"
+        href="https://jointherealworld.com/?a=7nrnndpb&utm_source=hustlersuniversityuk&utm_medium=cta_hero"
         class="btn btn-primary"
       >
         Join The Real World
@@ -68,8 +93,7 @@ import NavBar from "./NavBar.astro";
       <a href="#about" class="btn btn-outline">Learn More</a>
     </div>
 
-    <!-- 🟠 Toggle Placeholder -->
-    <!-- MVP DEFER: non-functional plan toggle; wire up later -->
+    <!-- 🔶 Plan Toggle Placeholder (non-functional MVP) -->
     <div
       class="mt-10 inline-flex items-center gap-3 bg-brand-panel px-6 py-2 rounded-full text-sm animate-fadeInDelay5"
     >
@@ -77,9 +101,10 @@ import NavBar from "./NavBar.astro";
       <span class="w-10 h-5 bg-brand-orange rounded-full"></span>
       <span>Yearly</span>
     </div>
+
   </div>
 
-  <!-- 🔸 4. Scroll Down Indicator -->
+  <!-- 🔸 Scroll Indicator -->
   <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 animate-bounceSlow">
     <a href="#about" class="flex flex-col items-center text-brand-muted hover:text-brand-gold transition">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -88,5 +113,5 @@ import NavBar from "./NavBar.astro";
       <span class="text-xs uppercase tracking-wider font-medium">Scroll</span>
     </a>
   </div>
-</section>
+
 </section>
