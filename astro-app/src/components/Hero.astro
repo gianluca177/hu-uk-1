@@ -1,117 +1,41 @@
 ---
-import NavBar from "./NavBar.astro";
+import Layout from "../layouts/Layout.astro";
+
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Plan from "../components/Plan.astro";
+import Philosophy from "../components/Philosophy.astro";
+import Teach from "../components/Teach.astro";
+import Instructors from "../components/Instructors.astro";
+import Choice from "../components/Choice.astro";
+import FAQ from "../components/FAQ.astro";
 ---
 
-<!-- ===================================================== -->
-<!-- HERO SECTION -- Hustlers University UK → The Real World -->
-<!-- ===================================================== -->
-<section
-  id="hero"
-  class="relative overflow-hidden bg-brand-bg text-brand-text min-h-screen flex flex-col"
+<Layout
+  title="Courses | Hustlers University UK"
+  description="Hustlers University UK is a premium online education platform focused on business, AI, content creation, fitness, and modern money skills."
 >
+  <!-- SECTION 1: HERO -->
+  <Hero />
 
-  <!-- 🔸 Navigation Bar -->
-  <NavBar />
+  <!-- SECTION 2: ABOUT -->
+  <About />
 
-  <!-- 🔸 Background Video (deferred / placeholder) -->
-  <video
-    autoplay
-    loop
-    muted
-    playsinline
-    preload="auto"
-    class="absolute inset-0 w-full h-full object-cover opacity-20"
-  >
-    <source src="https://iframe.videodelivery.net/yourvideoid" type="video/mp4" />
-  </video>
+  <!-- SECTION 3: PLAN -->
+  <Plan />
 
-  <!-- 🔸 Hero Content -->
-  <div
-    class="relative z-10 flex flex-col items-center justify-center text-center flex-grow px-4 py-24 animate-fadeIn"
-  >
+  <!-- SECTION 4: PHILOSOPHY -->
+  <Philosophy />
 
-    <!-- 🔶 Brand Relationship: HU → TRW -->
-    <div class="flex items-center justify-center gap-4 mb-6 animate-fadeInDelay">
+  <!-- SECTION 5: WHAT WE TEACH -->
+  <Teach />
 
-      <!-- Hustlers University UK Logo -->
-      <img
-        src="/hu-logo-300.png"
-        alt="Hustlers University UK Logo"
-        class="h-16 w-16 rounded-full border border-brand-gold object-cover"
-      />
+  <!-- SECTION 6: INSTRUCTORS -->
+  <Instructors />
 
-      <!-- Orange Arrow -->
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 text-brand-gold"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-4-4l4 4-4 4" />
-      </svg>
+  <!-- SECTION 7: CHOICE -->
+  <Choice />
 
-      <!-- The Real World Logo -->
-      <img
-        src="/trw-uk-logo-512.png"
-        alt="The Real World Educational Platform Logo"
-        class="h-16 w-16 rounded-full border border-brand-gold object-cover"
-      />
-
-    </div>
-
-    <!-- 🔶 Title -->
-    <h1
-      class="text-5xl md:text-6xl font-satoshi font-extrabold text-brand-gold drop-shadow-[0_0_25px_rgba(255,140,42,0.8)] glow-text animate-slideUp"
-    >
-      Hustlers University UK
-    </h1>
-
-    <!-- 🔶 Subtitle / Compliance-safe description -->
-    <p class="max-w-2xl mx-auto text-brand-muted text-lg mt-4 mb-8 animate-fadeInDelay2">
-      Hustlers University UK provides access to a global online education platform
-      focused on modern business, AI, content creation, fitness, and digital skills.
-      Educational platform only -- results depend on individual effort.
-    </p>
-
-    <!-- 🔶 Video Placeholder -->
-    <div
-      class="w-full max-w-3xl h-64 bg-brand-panel border border-brand-orange rounded-base mb-8 flex items-center justify-center animate-fadeInDelay3"
-    >
-      <span class="text-brand-muted italic">[ Video Placeholder ]</span>
-    </div>
-
-    <!-- 🔶 CTA Buttons -->
-    <div class="flex flex-wrap justify-center gap-4 animate-fadeInDelay4">
-      <a
-        href="https://jointherealworld.com/?a=7nrnndpb&utm_source=hustlersuniversityuk&utm_medium=cta_hero"
-        class="btn btn-primary"
-      >
-        Join The Real World
-      </a>
-      <a href="#about" class="btn btn-outline">Learn More</a>
-    </div>
-
-    <!-- 🔶 Plan Toggle Placeholder (non-functional MVP) -->
-    <div
-      class="mt-10 inline-flex items-center gap-3 bg-brand-panel px-6 py-2 rounded-full text-sm animate-fadeInDelay5"
-    >
-      <span>Monthly</span>
-      <span class="w-10 h-5 bg-brand-orange rounded-full"></span>
-      <span>Yearly</span>
-    </div>
-
-  </div>
-
-  <!-- 🔸 Scroll Indicator -->
-  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 animate-bounceSlow">
-    <a href="#about" class="flex flex-col items-center text-brand-muted hover:text-brand-gold transition">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
-      <span class="text-xs uppercase tracking-wider font-medium">Scroll</span>
-    </a>
-  </div>
-
-</section>
+  <!-- SECTION 8: FAQ -->
+  <FAQ />
+</Layout>
