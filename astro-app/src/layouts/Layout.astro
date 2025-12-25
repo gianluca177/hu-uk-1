@@ -1,6 +1,10 @@
 ---
 import "../styles/global.css";
-const { title = "The Real World UK", description = "Welcome to The Real World UK" } = Astro.props;
+
+const {
+  title = "Hustlers University UK",
+  description = "Hustlers University UK is a premium online community helping ambitious individuals master business, AI, content creation, fitness, and modern money skills."
+} = Astro.props;
 ---
 
 <html lang="en">
@@ -8,7 +12,7 @@ const { title = "The Real World UK", description = "Welcome to The Real World UK
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- 🟧 FAVICONS – TRW UK -->
+    <!-- FAVICONS – Hustlers University UK -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -16,6 +20,9 @@ const { title = "The Real World UK", description = "Welcome to The Real World UK
 
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Basic SEO / compliance -->
+    <meta name="robots" content="index, follow" />
   </head>
 
   <body>
