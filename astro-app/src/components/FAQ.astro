@@ -1,0 +1,56 @@
+---
+/* SECTION: FAQ -- Black + Gold/Orange Palette */
+const faqs = [
+  {
+    q: "How quickly will I start making money?",
+    a: "There’s no guaranteed timeframe. Some members see progress within weeks, others take longer depending on effort, consistency, and which skill path they follow. The Real World provides the tools and community -- results depend on your own execution.",
+  },
+  {
+    q: "Can I cancel anytime?",
+    a: "Yes. Membership is flexible -- you can cancel your subscription at any time from inside your account dashboard with no extra fees or obligations.",
+  },
+  {
+    q: "Do I keep my work?",
+    a: "Absolutely. Any projects, notes, or assets you create while learning are yours to keep and continue developing even after your membership ends.",
+  },
+  {
+    q: "Is this for beginners?",
+    a: "Yes. The Real World includes structured learning paths for total beginners and step-by-step guidance from instructors and the community. No prior experience is required -- just the willingness to learn and apply what you’re taught.",
+  },
+  {
+    q: "What exactly do I get inside?",
+    a: "You get access to interactive lessons, video tutorials, and a global community where you can ask questions, share progress, and learn from others who are building similar skills.",
+  },
+  {
+    q: "Is it available worldwide?",
+    a: "Yes. The Real World operates online -- you can join from anywhere with an internet connection. All content is in English.",
+  },
+];
+---
+<section id="faq" class="bg-[#000000] text-white">
+  <div class="max-w-3xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-[#FF8C2A]">FAQ</h2>
+    <div class="mt-6 space-y-3">
+      {faqs.map((f) => (
+        <details class="group border border-[#FF8C2A33] rounded p-4 bg-[#1A1A1A] hover:border-[#FF8C2A66] transition">
+          <summary class="cursor-pointer font-semibold text-[#FF8C2A]">
+            {f.q}
+          </summary>
+          <p class="mt-2 text-[#B3B3B3]">{f.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <div id="cta" class="mt-10 text-center">
+      <a
+        href="https://jointherealworld.com/?a=7nrnndpb&utm_source=therealworlduk&utm_medium=cta_faq"
+        class="px-8 py-3 rounded bg-[#FF8C2A] text-black font-semibold transition hover:bg-[#FFAE5A] shadow-[0_0_10px_rgba(255,140,42,0.35)]"
+      >
+        APPLY NOW
+      </a>
+      <p class="mt-3 text-xs text-[#777777]">
+        Educational platform -- no guaranteed results. Cancel anytime.
+      </p>
+    </div>
+  </div>
+</section>
